@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { Switch, Route, Redirect } from 'react-router-dom';
+
+import CarPlates from './CarPlates/CarPlates';
 
 class App extends Component {
   constructor(props) {
@@ -6,7 +9,10 @@ class App extends Component {
   }
   render() {
     return (
-      <div>Template</div>
+      <Switch>
+        <Route exact path="/car-plates" component={CarPlates} />
+        <Redirect to="/car-plates" />
+      </Switch>
     );
   }
 };

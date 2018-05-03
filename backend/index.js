@@ -23,7 +23,6 @@ if (isDeveloping) {
             modules: false
         }
     });
-
     app.use(middleware);
     app.use(webpackHotMiddleware(compiler));
     app.get('*', function response(req, res) {

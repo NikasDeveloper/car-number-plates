@@ -6,7 +6,9 @@ module.exports = {
   entry: path.join(__dirname, 'frontend', 'src', 'index.js'),
   output: {
     path: path.join(__dirname, 'frontend', 'dist'),
-    filename: 'bundle.js'
+    filename: 'bundle.js',
+    chunkFilename: '[id].js',
+    publicPath: ''
   },
   resolve: {
     extensions: ['.js', '.jsx']
@@ -65,6 +67,7 @@ module.exports = {
   },
   plugins: [new HtmlWebpackPlugin({
     filename: 'index.html',
-    template: path.join('.', 'frontend', 'src', 'index.html')
+    template: path.join('.', 'frontend', 'src', 'index.html'),
+    inject: 'body'
   })]
 };
