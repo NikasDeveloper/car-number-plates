@@ -1,8 +1,8 @@
 {
   "name": "web-app",
   "version": "1.0.0",
-  "description": "Web app template",
-  "main": "index.js",
+  "description": "Car number plates assignment",
+  "main": "backend/index.js",
   "scripts": {
     "build": "webpack",
     "start": "nodemon --watch backend backend"
