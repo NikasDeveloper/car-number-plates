@@ -1,5 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Page from './Page.jsx';
+import App from './containers/App';
 
-ReactDOM.render(<Page />, document.getElementById('root'));
+ReactDOM.render(<App />, document.getElementById('root'));
