@@ -6,6 +6,9 @@ import Aux from '../hoc/Aux';
 import Nav from '../components/UI/Nav/Nav';
 import Container from '../components/UI/Container/Container';
 import CarPlates from './CarPlates/CarPlates';
+import CarPlate from './CarPlates/CarPlate/CarPlate';
+import CarPlateCreate from './CarPlates/CarPlate/Create/CarPlateCreate';
+import CarPlateUpdate from './CarPlates/CarPlate/Update/CarPlateUpdate';
 
 class App extends Component {
   constructor(props) {
@@ -19,9 +22,9 @@ class App extends Component {
           <Container>
             <Switch>
               <Route exact path="/car-plates" component={CarPlates} />
-              <Route exact path="/car-plates/create" render={() => <h1>Create page</h1>} />
-              <Route exact path="/car-plates/:id" render={() => <h1>Preview page</h1>} />
-              <Route exact path="/car-plates/:id/edit" render={() => <h1>Edit page</h1>} />
+              <Route exact path="/car-plates/create" component={CarPlateCreate} />
+              <Route exact path="/car-plates/:id" component={CarPlate} />
+              <Route exact path="/car-plates/:id/edit" component={CarPlateUpdate}/>
               <Redirect to="/car-plates" />
             </Switch>
           </Container>
@@ -29,6 +32,6 @@ class App extends Component {
       </Aux>
     );
   }
-};
+}
 
 export default App;
