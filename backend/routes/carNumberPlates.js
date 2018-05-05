@@ -1,8 +1,16 @@
 const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
+const Joi = require('joi');
 
 const CarPlateNumber = require('../models/CarPlateNumber');
+const carNumberPlateSchema = Joi.object().options({ abortEarly: false }).keys({
+  number: Joi.string().required().length(6).regex(/^([A-Z]{3}\d{3})$/).label('Car plate number'),
+  owner: {
+    firstName: Joi.string().required('First name is required').min(2).max(255).label('First name'),
+    lastName: Joi.string().required().min(2).max(255).label('Last name')
+  }
+});
 const transformCarPlateNumber = cpn => ({
   _id: cpn._id,
   number: cpn.number,
@@ -27,6 +35,8 @@ router.get('/', ( req, res ) => {
 });
 
 router.post('/', ( req, res ) => {
+  const validation = Joi.validate(req.body, carNumberPlateSchema);
+  if ( validation.error ) return res.status(422).send({ code: 422, errors: validation.error });
   const carPlateNumber = new CarPlateNumber({
     _id: new mongoose.Types.ObjectId(),
     number: req.body.number,
@@ -62,6 +72,8 @@ router.get('/:carPlaneNumberId', ( req, res ) => {
 });
 
 router.put("/:carPlaneNumberId", ( req, res ) => {
+  const validation = Joi.validate(req.body, carNumberPlateSchema);
+  if ( validation.error ) return res.status(422).send({ code: 422, errors: validation.error });
   const id = req.params.carPlaneNumberId;
   const updatedAttributes = {
     number: req.body.number,
