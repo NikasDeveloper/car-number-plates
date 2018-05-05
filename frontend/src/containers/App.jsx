@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
-import Aux from '../hoc/Aux';
-import Container from '../components/UI/Container/Container';
-import Nav from '../components/UI/Nav/Nav';
-import CarPlates from './CarPlates/CarPlates';
 import classes from './App.css';
+import Aux from '../hoc/Aux';
+import Nav from '../components/UI/Nav/Nav';
+import Container from '../components/UI/Container/Container';
+import CarPlates from './CarPlates/CarPlates';
 
 class App extends Component {
   constructor(props) {
@@ -19,6 +19,9 @@ class App extends Component {
           <Container>
             <Switch>
               <Route exact path="/car-plates" component={CarPlates} />
+              <Route exact path="/car-plates/create" render={() => <h1>Create page</h1>} />
+              <Route exact path="/car-plates/:id" render={() => <h1>Preview page</h1>} />
+              <Route exact path="/car-plates/:id/edit" render={() => <h1>Edit page</h1>} />
               <Redirect to="/car-plates" />
             </Switch>
           </Container>
