@@ -7,6 +7,7 @@ class CarPlates extends Component {
   render() {
     return (
       <div>Car plate</div>
+    );
   }
 }
 
