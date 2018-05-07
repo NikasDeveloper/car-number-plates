@@ -1,0 +1,82 @@
+main {
+    margin: 0 auto;
+    padding: 10px;
+    display: block;
+    width: 504px;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+.Post {
+    width: 100%;
+    max-width: 478px;
+    padding: 12px;
+    margin-bottom: 10px;
+    color: #141823;
+    background: #fff;
+    border: 1px solid;
+    border-color: #e5e6e9 #dfe0e4 #d0d1d5;
+    border-radius: 3px;
+}
+
+.Preloader {
+    display: block;
+    position: relative;
+    height: 100%;
+    background: #f6f7f8 -webkit-linear-gradient(left, #f6f7f8 0%, #edeef1 20%, #f6f7f8 40%, #f6f7f8 100%) no-repeat;
+    background-size: 800px 100%;
+    animation: placeHolderShimmer 1s linear infinite forwards;
+}
+
+@-webkit-keyframes placeHolderShimmer {
+    0% {
+        background-position: -468px 0
+    }
+    100% {
+        background-position: 468px 0
+    }
+}
+
+.Preloader * {
+    background: transparent;
+    position: relative;
+    margin: 0 auto;
+    width: 100%;
+    overflow: hidden;
+}
+
+.Preloader *:after {
+    content: '';
+    position: absolute;
+    border: 500px solid #fff;
+    width: 100%;
+}
+
+.LoaderCircle {
+    height: 200px;
+}
+
+.LoaderCircle:after {
+    left: -340px;
+    top: -475px;
+    border-radius: 100%;
+    width: 150px;
+    height: 150px;
+}
+
+.LoaderBar {
+    height: 40px;
+}
+
+.LoaderBar:after {
+    left: -90%;
+    top: -485px;
+    border-radius: 1500px;
+    height: 10px;
+    width: 60%;
+}
+
+.Filler {
+    height: 20px;
+    background: #fff;
+}
