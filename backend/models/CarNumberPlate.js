@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
 
-const carPlateNumber = mongoose.Schema({
+const carNumberPlate = mongoose.Schema({
   _id: mongoose.Schema.Types.ObjectId,
   number: {
     type: String,
@@ -38,4 +38,4 @@ const carPlateNumber = mongoose.Schema({
   }
 });
 
-module.exports = mongoose.model('CarPlateNumber', carPlateNumber);
+module.exports = mongoose.model('CarNumberPlate', carNumberPlate);

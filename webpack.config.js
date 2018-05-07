@@ -3,7 +3,10 @@ const autoprefixer = require('autoprefixer');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  entry: path.join(__dirname, 'frontend', 'src', 'index.js'),
+  entry: [
+    path.join(__dirname, 'config', 'polyfills.js'),
+    path.join(__dirname, 'frontend', 'src', 'index.js')
+  ],
   output: {
     path: path.join(__dirname, 'frontend', 'dist'),
     filename: 'bundle.js',
@@ -11,13 +14,13 @@ module.exports = {
     publicPath: '/'
   },
   resolve: {
-    extensions: ['.js', '.jsx']
+    extensions: [ '.js', '.jsx' ]
   },
   module: {
     rules: [
       {
         test: /\.js$/,
-        loader: 'babel-loader',
+        loader: require.resolve('babel-loader'),
         exclude: /node_modules/
       },
       {
@@ -26,7 +29,7 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['babel-preset-env', 'react']
+            presets: [ 'babel-preset-env', 'react' ]
           }
         }
       },
@@ -65,9 +68,11 @@ module.exports = {
       }
     ]
   },
-  plugins: [new HtmlWebpackPlugin({
-    filename: 'index.html',
-    template: path.join(__dirname, 'frontend', 'src', 'index.html'),
-    inject: 'body'
-  })]
+  plugins: [
+    new HtmlWebpackPlugin({
+      filename: 'index.html',
+      template: path.join(__dirname, 'frontend', 'src', 'index.html'),
+      inject: 'body'
+    })
+  ]
 };
