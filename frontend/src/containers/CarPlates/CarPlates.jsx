@@ -1,29 +1,34 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchCarNumberPlatesInit, fetchCarNumberPlates } from '../../store/actions/index';
+import { fetchCarNumberPlates } from '../../store/actions/index';
+import Aux from '../../hoc/Aux';
 import DataPreloader from '../../components/UI/Preloader/Data/DataPreloader';
+import CarPlateNumbersComponent from '../../components/CarPlateNumbers/CarPlateNumbers';
 
 class CarPlates extends Component {
   constructor( props ) {
     super(props);
+    this.carPlateNumbersClickHandler = id => {
+      this.props.history.push(`/car-number-plates/${id}`);
+    };
   }
 
   componentDidMount() {
-    this.props.onFetchStart();
+    if ( !this.props.carNumberPlates.length ) {
+      this.props.onFetchStart();
+    }
   }
 
   render() {
-    const content = this.props.loading
-      ? <DataPreloader/>
-      : (
-        <ul>
-          {this.props.carNumberPlates.map(cnp => <li key={cnp._id}>{cnp.number}</li>)}
-        </ul>
-      );
     return (
-      <div>
-        {content}
-      </div>
+      <Aux>
+        {
+          this.props.loading
+            ? <DataPreloader/>
+            : <CarPlateNumbersComponent carNumberPlates={this.props.carNumberPlates}
+                                        clicked={this.carPlateNumbersClickHandler}/>
+        }
+      </Aux>
     );
   }
 }

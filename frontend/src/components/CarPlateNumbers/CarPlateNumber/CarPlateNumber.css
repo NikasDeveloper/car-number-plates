@@ -1,0 +1,23 @@
+.CarPlateNumber {
+    padding: 15px;
+    margin: 10px 0;
+    border: 1px solid rgba(0, 0, 0, .125);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: 0.3s;
+    flex-basis: 32%;
+}
+
+.CarPlateNumber:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.CarPlateNumber h4 {
+    margin: 10px 0;
+}
+
+@media (max-width: 1120px) {
+    .CarPlateNumber {
+        flex-basis: 100%;
+    }
+}

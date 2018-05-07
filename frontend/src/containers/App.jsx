@@ -21,11 +21,11 @@ class App extends Component {
         <main className={classes.Main}>
           <Container>
             <Switch>
-              <Route exact path="/car-plates" component={CarPlates} />
-              <Route exact path="/car-plates/create" component={CarPlateCreate} />
-              <Route exact path="/car-plates/:id" component={CarPlate} />
-              <Route exact path="/car-plates/:id/edit" component={CarPlateUpdate}/>
-              <Redirect to="/car-plates" />
+              <Route exact path="/car-number-plates" component={CarPlates} />
+              <Route exact path="/car-number-plates/create" component={CarPlateCreate} />
+              <Route exact path="/car-number-plates/:id" component={CarPlate} />
+              <Route exact path="/car-number-plates/:id/edit" component={CarPlateUpdate}/>
+              <Redirect to="/car-number-plates" />
             </Switch>
           </Container>
         </main>

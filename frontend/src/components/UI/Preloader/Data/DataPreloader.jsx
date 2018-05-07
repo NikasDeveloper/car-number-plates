@@ -1,9 +1,9 @@
 import React from 'react';
 import classes from './DataPreloader.css';
 
-const DataPreloader = props => {
+const DataPreloader = () => {
   return (
-    <main>
+    <div className={classes.Container}>
       <article className={classes.Post}>
         <div className={classes.Preloader}>
           <div className={classes.LoaderCircle}/>
@@ -12,7 +12,7 @@ const DataPreloader = props => {
           <div className={classes.Filler}/>
         </div>
       </article>
-    </main>
+    </div>
   );
 };
 
