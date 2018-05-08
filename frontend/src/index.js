@@ -7,10 +7,12 @@ import thunk from 'redux-thunk';
 
 import './index.css';
 import carNumberPlatesReducer from './store/reducers/carNumberPlates';
+import carNumberPlateReducer from './store/reducers/carNumberPlate';
 import App from './containers/App';
 
 const rootReducer = combineReducers({
-  carNumberPlates: carNumberPlatesReducer
+  carNumberPlates: carNumberPlatesReducer,
+  carNumberPlate: carNumberPlateReducer
 });
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)));

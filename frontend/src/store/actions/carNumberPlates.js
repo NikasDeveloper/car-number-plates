@@ -1,28 +1,28 @@
 import {
-  FETCH_CAR_PLATE_NUMBERS_FAIL,
-  FETCH_CAR_PLATE_NUMBERS_INIT,
-  FETCH_CAR_PLATE_NUMBERS_START,
-  FETCH_CAR_PLATE_NUMBERS_SUCCESS
+  FETCH_CAR_NUMBER_PLATES_FAIL,
+  FETCH_CAR_NUMBER_PLATES_INIT,
+  FETCH_CAR_NUMBER_PLATES_START,
+  FETCH_CAR_NUMBER_PLATES_SUCCESS
 } from './actionTypes';
 
 export const fetchCarNumberPlatesInit = () => {
-  return { type: FETCH_CAR_PLATE_NUMBERS_INIT };
+  return { type: FETCH_CAR_NUMBER_PLATES_INIT };
 };
 
 export const fetchCarNumberPlatesStart = () => {
-  return { type: FETCH_CAR_PLATE_NUMBERS_START };
+  return { type: FETCH_CAR_NUMBER_PLATES_START };
 };
 
 export const fetchCarNumberPlatesSuccess = carNumberPlates => {
   return {
-    type: FETCH_CAR_PLATE_NUMBERS_SUCCESS,
+    type: FETCH_CAR_NUMBER_PLATES_SUCCESS,
     carNumberPlates
   };
 };
 
 export const fetchCarNumberPlatesFail = error => {
   return {
-    type: FETCH_CAR_PLATE_NUMBERS_FAIL,
+    type: FETCH_CAR_NUMBER_PLATES_FAIL,
     error
   };
 };

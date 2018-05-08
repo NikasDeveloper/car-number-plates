@@ -1,0 +1,7 @@
+.FormGroup {
+    margin-bottom: 15px;
+}
+
+.FormGroup:last-child {
+    margin-bottom: 0;
+}

@@ -1,0 +1,53 @@
+.Button {
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: .25rem;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+.Button:disabled {
+    cursor: not-allowed;
+}
+
+.Button.ButtonLg {
+    padding: .5rem 6rem;
+    font-size: 1.25rem;
+    line-height: 1.5;
+    border-radius: .3rem;
+}
+
+.Button.ButtonPrimary {
+    color: #fff;
+    background-color: #337ab7;
+    border-color: #2e6da4;
+}
+
+.Button.ButtonPrimary:hover,
+.Button.ButtonPrimary:focus,
+.Button.ButtonPrimary:active {
+    color: #fff;
+    background-color: #337ab7;
+    border-color: #2e6da4;
+}
+
+.Button.ButtonDanger {
+    color: #fff;
+    background-color: #d9534f;
+    border-color: #d43f3a;
+}
+
+.Button.ButtonDanger:hover,
+.Button.ButtonDanger:focus,
+.Button.ButtonDanger:active {
+    color: #fff;
+    background-color: #c9302c;
+    border-color: #ac2925;
+}

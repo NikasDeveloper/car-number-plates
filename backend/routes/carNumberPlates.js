@@ -45,11 +45,13 @@ router.post('/', ( req, res ) => {
   carNumberPlate
     .save()
     .then(cnp => res.status(201).json({
-      message: 'Car number plate created successfully',
-      carPlateNumber: {
-        _id: cnp._id,
-        number: cnp.number,
-        owner: cnp.owner
+      carNumberPlate: {
+        message: 'Car number plate created successfully',
+        carPlateNumber: {
+          _id: cnp._id,
+          number: cnp.number,
+          owner: cnp.owner
+        }
       }
     }))
     .catch(e => res.status(500).json({ error: e }));
@@ -63,10 +65,11 @@ router.get('/:carNumberPlateId', ( req, res ) => {
     .exec()
     .then(cpn => {
       if ( !cpn ) res.status(404).json(notFoundError);
-      res.status(200).json(transformNumberPlate(cpn));
+      res.status(200).json({ carNumberPlate: transformNumberPlate(cpn) });
     })
     .catch(() => res.status(404).json(notFoundError));
-});
+})
+;
 
 router.put("/:carNumberPlateId", ( req, res ) => {
   const validation = Joi.validate(req.body, carNumberPlateSchema);

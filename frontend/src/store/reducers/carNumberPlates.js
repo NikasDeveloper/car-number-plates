@@ -1,8 +1,8 @@
 import {
-  FETCH_CAR_PLATE_NUMBERS_FAIL,
-  FETCH_CAR_PLATE_NUMBERS_INIT,
-  FETCH_CAR_PLATE_NUMBERS_START,
-  FETCH_CAR_PLATE_NUMBERS_SUCCESS
+  FETCH_CAR_NUMBER_PLATES_FAIL,
+  FETCH_CAR_NUMBER_PLATES_INIT,
+  FETCH_CAR_NUMBER_PLATES_START,
+  FETCH_CAR_NUMBER_PLATES_SUCCESS
 } from '../actions/actionTypes';
 import { updateObject } from '../utility';
 
@@ -36,13 +36,13 @@ const fetchCarNumberPlatesFail = ( state, action ) => updateObject(state, {
 
 const reducer = ( state = initialState, action ) => {
   switch ( action.type ) {
-    case FETCH_CAR_PLATE_NUMBERS_INIT:
+    case FETCH_CAR_NUMBER_PLATES_INIT:
       return fetchCarNumberPlatesInit(state);
-    case FETCH_CAR_PLATE_NUMBERS_START:
+    case FETCH_CAR_NUMBER_PLATES_START:
       return fetchCarNumberPlatesStart(state);
-    case FETCH_CAR_PLATE_NUMBERS_SUCCESS:
+    case FETCH_CAR_NUMBER_PLATES_SUCCESS:
       return fetchCarNumberPlatesSuccess(state, action);
-    case FETCH_CAR_PLATE_NUMBERS_FAIL:
+    case FETCH_CAR_NUMBER_PLATES_FAIL:
       return fetchCarNumberPlatesFail(state, action);
     default:
       return state;
