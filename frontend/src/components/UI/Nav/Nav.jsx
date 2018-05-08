@@ -8,7 +8,7 @@ const nav = () => {
   return (
     <nav className={classes.Navigation}>
       <Container>
-        <Link to="/car-plates">Car number plates assignment</Link>
+        <Link to="/car-number-plates">Car number plates assignment</Link>
       </Container>
     </nav>
   )

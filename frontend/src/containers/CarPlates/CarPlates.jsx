@@ -9,7 +9,7 @@ class CarPlates extends Component {
   constructor( props ) {
     super(props);
     this.carPlateNumbersClickHandler = id => {
-      this.props.history.push(`/car-number-plates/${id}`);
+      this.props.history.push(`/car-number-plates/${id}/edit`);
     };
   }
 

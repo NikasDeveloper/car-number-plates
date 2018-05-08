@@ -26,10 +26,8 @@ router.get('/', ( req, res ) => {
         carNumberPlates: carNumberPlates.map(cnp => transformNumberPlate(cnp))
       });
     })
-    .catch(err => {
-      res.status(500).json({
-        error: err
-      });
+    .catch(() => {
+      res.status(500).json({ message: "Failed to load car number plates." });
     });
 });
 

@@ -27,16 +27,12 @@ export const fetchCarNumberPlatesFail = error => {
   };
 };
 
-export const fetchCarNumberPlates = () => {
-  return dispatch => {
-    dispatch(fetchCarNumberPlatesStart());
-    fetch('/api/car-number-plates')
-      .then(response => response.json())
-      .then(json => {
-        dispatch(fetchCarNumberPlatesSuccess(json.carNumberPlates));
-      })
-      .catch(error => {
-        dispatch(fetchCarNumberPlatesFail(error));
-      });
-  }
+export const fetchCarNumberPlates = () => dispatch => {
+  dispatch(fetchCarNumberPlatesStart());
+  fetch('/api/car-number-plates')
+    .then(response => Promise.all([ response, response.json() ]))
+    .then(( [ response, json ] ) => {
+      if ( response.status === 200 ) dispatch(fetchCarNumberPlatesSuccess(json.carNumberPlates));
+      else dispatch(fetchCarNumberPlatesFail(json.message));
+    });
 };
