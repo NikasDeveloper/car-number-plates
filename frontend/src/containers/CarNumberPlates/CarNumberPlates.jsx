@@ -5,7 +5,7 @@ import Aux from '../../hoc/Aux';
 import DataPreloader from '../../components/UI/Preloader/Data/DataPreloader';
 import CarPlateNumbersComponent from '../../components/CarPlateNumbers/CarPlateNumbers';
 
-class CarPlates extends Component {
+class CarNumberPlates extends Component {
   constructor( props ) {
     super(props);
     this.carPlateNumbersClickHandler = id => {
@@ -43,4 +43,4 @@ const mapDispatchToProps = dispatch => ({
   onFetchStart: () => dispatch(fetchCarNumberPlates())
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(CarPlates);
+export default connect(mapStateToProps, mapDispatchToProps)(CarNumberPlates);
