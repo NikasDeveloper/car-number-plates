@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { fetchCarNumberPlates, fetchCarNumberPlatesInit } from '../../store/actions/index';
 import WithErrorHandler from '../../hoc/WithErrorHandler/WithErrorHandler';
 import Aux from '../../hoc/Aux';
-import DataPreloader from '../../components/UI/Preloader/Data/DataPreloader';
+import Preloader from '../../components/UI/Preloader/Preloader';
 import CarPlateNumbersComponent from '../../components/CarPlateNumbers/CarPlateNumbers';
 
 class CarNumberPlates extends Component {
@@ -29,7 +29,7 @@ class CarNumberPlates extends Component {
       <Aux>
         {
           this.props.loading
-            ? <DataPreloader/>
+            ? <Preloader/>
             : <CarPlateNumbersComponent carNumberPlates={this.props.carNumberPlates}
                                         clicked={this.carPlateNumbersClickHandler}/>
         }

@@ -1,7 +1,7 @@
 import React from 'react';
-import classes from './DataPreloader.css';
+import classes from './Preloader.css';
 
-const DataPreloader = () => {
+const Preloader = () => {
   return (
     <div className={classes.Container}>
       <article className={classes.Post}>
@@ -16,4 +16,4 @@ const DataPreloader = () => {
   );
 };
 
-export default DataPreloader;
+export default Preloader;

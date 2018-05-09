@@ -9,7 +9,7 @@ import {
 } from "../../../store/actions/index";
 import WithErrorHandler from '../../../hoc/WithErrorHandler/WithErrorHandler';
 import Aux from '../../../hoc/Aux';
-import DataPreloader from '../../../components/UI/Preloader/Data/DataPreloader';
+import Preloader from '../../../components/UI/Preloader/Preloader';
 import Form from "../../../components/UI/Form/Form";
 import FormGroup from "../../../components/UI/Form/FormGroup/FormGroup";
 import Input from "../../../components/UI/Form/FormGroup/Input/Input";
@@ -114,7 +114,7 @@ class CarNumberPlate extends Component {
   }
 
   render() {
-    let content = <DataPreloader/>;
+    let content = <Preloader/>;
     if ( !this.props.loading && !this.props.modified ) {
       content = (
         <Aux>
