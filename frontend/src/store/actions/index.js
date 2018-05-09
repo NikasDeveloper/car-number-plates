@@ -6,5 +6,6 @@ export {
 export {
   modifyCarNumberPlateInit,
   fetchCarNumberPlate,
-  deleteCarNumberPlate
+  deleteCarNumberPlate,
+  updateCarNumberPlate
 } from './carNumberPlate';

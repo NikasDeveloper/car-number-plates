@@ -1,8 +1,6 @@
 import * as actionTypes from './actionTypes';
 import { handleFetchError } from '../utility';
 
-export const modifyCarNumberPlateInit = () => ({ type: actionTypes.MODIFY_CAR_NUMBER_PLATE_INIT });
-
 const fetchCarNumberPlateStart = () => ({ type: actionTypes.FETCH_CAR_NUMBER_PLATE_START });
 
 const fetchCarNumberPlateSuccess = carNumberPlate => ({
@@ -10,7 +8,7 @@ const fetchCarNumberPlateSuccess = carNumberPlate => ({
   carNumberPlate
 });
 
-export const fetchCarNumberPlateFail = error => ({
+const fetchCarNumberPlateFail = error => ({
   type: actionTypes.FETCH_CAR_NUMBER_PLATE_FAIL,
   error
 });
@@ -27,22 +25,37 @@ export const fetchCarNumberPlate = id => dispatch => {
     );
 };
 
-const deleteCarNumberPlateStart = () => ({ type: actionTypes.DELETE_CAR_NUMBER_PLATE_START });
+export const modifyCarNumberPlateInit = () => ({ type: actionTypes.MODIFY_CAR_NUMBER_PLATE_INIT });
 
-const deleteCarNumberPlateSuccess = () => ({ type: actionTypes.DELETE_CAR_NUMBER_PLATE_SUCCESS });
+const modifyCarNumberPlateStart = () => ({ type: actionTypes.MODIFY_CAR_NUMBER_PLATE_START });
 
-const deleteCarNumberPlateFail = error => ({
-  type: actionTypes.DELETE_CAR_NUMBER_PLATE_FAIL,
-  error
-});
+const modifyCarNumberPlateSuccess = () => ({ type: actionTypes.MODIFY_CAR_NUMBER_PLATE_SUCCESS });
+
+const modifyCarNumberPlateFail = () => ({ type: actionTypes.MODIFY_CAR_NUMBER_PLATE_FAIL });
 
 export const deleteCarNumberPlate = id => dispatch => {
-  dispatch(deleteCarNumberPlateStart());
+  dispatch(modifyCarNumberPlateStart());
   fetch(`/api/car-number-plates/${id}`, { method: 'DELETE' })
     .then(handleFetchError)
-    .then(() => dispatch(deleteCarNumberPlateSuccess()))
+    .then(() => dispatch(modifyCarNumberPlateSuccess()))
     .catch(error => error
       .json()
-      .then(json => dispatch(deleteCarNumberPlateFail(json)))
+      .then(json => dispatch(modifyCarNumberPlateFail(json)))
+    );
+};
+
+export const updateCarNumberPlate = ( id, carNumberPlate ) => dispatch => {
+  dispatch(modifyCarNumberPlateStart());
+  fetch(`/api/car-number-plates/${id}`, {
+    method: 'PUT',
+    body: JSON.stringify(carNumberPlate),
+    headers: new Headers({
+      'Content-Type': 'application/json'
+    })
+  }).then(handleFetchError)
+    .then(() => dispatch(modifyCarNumberPlateSuccess()))
+    .catch(error => error
+      .json()
+      .then(json => dispatch(modifyCarNumberPlateFail(json)))
     );
 };

@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import {
   fetchCarNumberPlate,
   deleteCarNumberPlate,
+  updateCarNumberPlate,
   modifyCarNumberPlateInit
 } from "../../../store/actions/index";
 import WithErrorHandler from '../../../hoc/WithErrorHandler/WithErrorHandler';
@@ -70,7 +71,15 @@ class CarNumberPlate extends Component {
     };
     this.formSubmitHandler = event => {
       event.preventDefault();
-      console.log('submited');
+      const id = this.props.match.params.id;
+      const carNumberPlate = {
+        number: this.state.inputs.number.value,
+        owner: {
+          firstName: this.state.inputs.firstName.value,
+          lastName: this.state.inputs.lastName.value
+        }
+      };
+      this.props.onUpdate(id, carNumberPlate);
     };
     this.deleteClickedHandler = () => {
       if ( window.confirm('Are you sure you want to delete this item?') ) {
@@ -115,7 +124,7 @@ class CarNumberPlate extends Component {
                    error={this.state.inputs.lastName.error}
                    changed={this.inputChangedHandler}/>
           </FormGroup>
-          <FormGroup label="car plate number" error={this.state.inputs.number.error}>
+          <FormGroup label="number on car plate" error={this.state.inputs.number.error}>
             <Input name="number"
                    placeholder={this.state.inputs.number.placeholder}
                    value={this.state.inputs.number.value}
@@ -126,11 +135,12 @@ class CarNumberPlate extends Component {
           <div style={{ textAlign: 'right' }}>
             <Button buttonType="button"
                     style={{ marginRight: '10px' }}
+                    disabled={this.props.modifying}
                     clicked={this.deleteClickedHandler}
             >
               Delete
             </Button>
-            <Button buttonType="submit" buttonClass="primary">Edit</Button>
+            <Button buttonType="submit" buttonClass="primary" disabled={this.props.modifying}>Edit</Button>
           </div>
         </Form>
       );
@@ -155,6 +165,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   onFetchStart: id => dispatch(fetchCarNumberPlate(id)),
   onDelete: id => dispatch(deleteCarNumberPlate(id)),
+  onUpdate: ( id, carNumberPlate ) => dispatch(updateCarNumberPlate(id, carNumberPlate)),
   onModifyInit: () => dispatch(modifyCarNumberPlateInit()),
 });
 
