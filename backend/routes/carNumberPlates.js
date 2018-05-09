@@ -1,21 +1,15 @@
 const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
-const Joi = require('joi');
-
 const CarNumberPlate = require('../models/CarNumberPlate');
-const carNumberPlateSchema = Joi.object().options({ abortEarly: false }).keys({
-  number: Joi.string().required().length(6).regex(/^([A-Z]{3}\d{3})$/).label('Car number plate'),
-  owner: {
-    firstName: Joi.string().required('First name is required').min(2).max(255).label('First name'),
-    lastName: Joi.string().required().min(2).max(255).label('Last name')
-  }
-});
+const badRequestErrorFactory = require('../factories/badRequestErrorFactory');
+const numberTakenErrorFactory = require('../factories/numberTakenErrorFactory');
 const transformNumberPlate = cnp => ({
   _id: cnp._id,
   number: cnp.number,
   owner: cnp.owner
 });
+const notFoundError = { code: 404, message: 'Car number plate not found' };
 
 router.get('/', ( req, res ) => {
   CarNumberPlate.find()
@@ -32,8 +26,6 @@ router.get('/', ( req, res ) => {
 });
 
 router.post('/', ( req, res ) => {
-  const validation = Joi.validate(req.body, carNumberPlateSchema);
-  if ( validation.error ) return res.status(422).send({ code: 422, errors: validation.error });
   const carNumberPlate = new CarNumberPlate({
     _id: new mongoose.Types.ObjectId(),
     number: req.body.number,
@@ -54,12 +46,14 @@ router.post('/', ( req, res ) => {
         }
       }
     }))
-    .catch(e => res.status(500).json({ error: e }));
+    .catch(e => e.code === 11000
+      ? res.status(422).json(numberTakenErrorFactory())
+      : res.status(500).json(badRequestErrorFactory(e.errors))
+    );
 });
 
 router.get('/:carNumberPlateId', ( req, res ) => {
   const id = req.params.carNumberPlateId;
-  const notFoundError = { code: 404, message: 'Car number plate not found' };
   CarNumberPlate.findById(id)
     .select('_id number owner')
     .exec()
@@ -68,12 +62,9 @@ router.get('/:carNumberPlateId', ( req, res ) => {
       res.status(200).json({ carNumberPlate: transformNumberPlate(cpn) });
     })
     .catch(() => res.status(404).json(notFoundError));
-})
-;
+});
 
 router.put("/:carNumberPlateId", ( req, res ) => {
-  const validation = Joi.validate(req.body, carNumberPlateSchema);
-  if ( validation.error ) return res.status(422).send({ code: 422, errors: validation.error });
   const id = req.params.carNumberPlateId;
   const updatedAttributes = {
     number: req.body.number,
@@ -85,7 +76,10 @@ router.put("/:carNumberPlateId", ( req, res ) => {
   CarNumberPlate.update({ _id: id }, { $set: updatedAttributes }, { runValidators: true })
     .exec()
     .then(() => res.status(200).json({ message: 'Car number plate updated', }))
-    .catch(err => res.status(500).json({ error: err }));
+    .catch(e => e.code === 11000
+      ? res.status(422).json(numberTakenErrorFactory())
+      : res.status(500).json(badRequestErrorFactory(e.errors))
+    );
 });
 
 router.delete('/:carNumberPlateId', ( req, res ) => {
@@ -94,10 +88,7 @@ router.delete('/:carNumberPlateId', ( req, res ) => {
     .exec()
     .then(result => result.n
       ? res.status(200).json({ message: 'Car number plate deleted', })
-      : res.status(404).json({
-        code: 404,
-        message: 'Car number plate not found'
-      })
+      : res.status(404).json(notFoundError)
     )
     .catch(() => res.status(500).json({
       code: 500,
