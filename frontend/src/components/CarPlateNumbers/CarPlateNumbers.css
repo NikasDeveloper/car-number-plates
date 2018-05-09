@@ -5,16 +5,8 @@
     margin: 40px 0;
 }
 
-.CarPlateNumbers {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    flex-wrap: wrap;
-}
-
 @media (max-width: 1120px) {
     .CarPlateNumbers {
-        justify-content: flex-start;
         margin: 10px;
     }
 }
