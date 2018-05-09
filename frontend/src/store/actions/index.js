@@ -9,3 +9,8 @@ export {
   deleteCarNumberPlate,
   updateCarNumberPlate
 } from './carNumberPlate';
+
+export {
+  createInit,
+  create
+} from './create';
