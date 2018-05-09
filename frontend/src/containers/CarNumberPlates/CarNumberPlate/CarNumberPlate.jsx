@@ -41,23 +41,6 @@ class CarNumberPlate extends Component {
       },
       carNumberPlateFound: false,
     };
-    this.carNumberPlateLoaded = () => {
-      const updatedState = { ...this.state };
-      const updatedInputs = { ...updatedState.inputs };
-      updatedInputs.firstName = {
-        ...updatedInputs.firstName,
-        value: this.props.carNumberPlate.owner.firstName
-      };
-      updatedInputs.lastName = {
-        ...updatedInputs.lastName,
-        value: this.props.carNumberPlate.owner.lastName
-      };
-      updatedInputs.number = {
-        ...updatedInputs.number,
-        value: this.props.carNumberPlate.number
-      };
-      this.setState({ carNumberPlateFound: true, inputs: updatedInputs });
-    };
     this.inputChangedHandler = event => {
       const value = event.target.value.toUpperCase();
       const name = event.target.name;
@@ -88,15 +71,42 @@ class CarNumberPlate extends Component {
     }
   }
 
+  static getDerivedStateFromProps( nextProps, prevState ) {
+    let newState = null;
+    if ( nextProps.error && nextProps.error.code === 422 ) {
+      const errors = nextProps.error.errors;
+      const updatedState = { ...prevState };
+      const updatedInputs = { ...updatedState.inputs };
+      errors.forEach(e => {
+        const updatedInput = { ...updatedInputs[ e.key ] };
+        updatedInput.error = e.message;
+        updatedInputs[ e.key ] = updatedInput;
+      });
+      newState = { inputs: updatedInputs };
+    }
+    if ( nextProps.carNumberPlate && !prevState.carNumberPlateFound ) {
+      const updatedState = { ...prevState };
+      const updatedInputs = { ...updatedState.inputs };
+      updatedInputs.firstName = {
+        ...updatedInputs.firstName,
+        value: nextProps.carNumberPlate.owner.firstName
+      };
+      updatedInputs.lastName = {
+        ...updatedInputs.lastName,
+        value: nextProps.carNumberPlate.owner.lastName
+      };
+      updatedInputs.number = {
+        ...updatedInputs.number,
+        value: nextProps.carNumberPlate.number
+      };
+      newState = { inputs: updatedInputs, carNumberPlateFound: true };
+    }
+    return newState;
+  }
+
   componentDidMount() {
     const id = this.props.match.params.id;
     this.props.onFetchStart(id);
-  }
-
-  componentDidUpdate( prevProps, prevState, snapshot ) {
-    if ( this.props.carNumberPlate && !this.state.carNumberPlateFound ) {
-      this.carNumberPlateLoaded();
-    }
   }
 
   componentWillUnmount() {

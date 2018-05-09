@@ -31,7 +31,10 @@ const modifyCarNumberPlateStart = () => ({ type: actionTypes.MODIFY_CAR_NUMBER_P
 
 const modifyCarNumberPlateSuccess = () => ({ type: actionTypes.MODIFY_CAR_NUMBER_PLATE_SUCCESS });
 
-const modifyCarNumberPlateFail = () => ({ type: actionTypes.MODIFY_CAR_NUMBER_PLATE_FAIL });
+const modifyCarNumberPlateFail = error => ({
+  type: actionTypes.MODIFY_CAR_NUMBER_PLATE_FAIL,
+  error
+});
 
 export const deleteCarNumberPlate = id => dispatch => {
   dispatch(modifyCarNumberPlateStart());

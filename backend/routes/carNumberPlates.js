@@ -48,7 +48,7 @@ router.post('/', ( req, res ) => {
     }))
     .catch(e => e.code === 11000
       ? res.status(422).json(numberTakenErrorFactory())
-      : res.status(500).json(badRequestErrorFactory(e.errors))
+      : res.status(422).json(badRequestErrorFactory(e.errors))
     );
 });
 
@@ -78,7 +78,7 @@ router.put("/:carNumberPlateId", ( req, res ) => {
     .then(() => res.status(200).json({ message: 'Car number plate updated', }))
     .catch(e => e.code === 11000
       ? res.status(422).json(numberTakenErrorFactory())
-      : res.status(500).json(badRequestErrorFactory(e.errors))
+      : res.status(422).json(badRequestErrorFactory(e.errors))
     );
 });
 
