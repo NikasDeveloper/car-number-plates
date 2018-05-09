@@ -3,7 +3,7 @@ import classes from './Button.css';
 
 const Button = props => {
   const type = props.buttonType ? props.buttonType : "button";
-  const buttonClasses = [ classes.Button];
+  const buttonClasses = [ classes.Button, classes.ButtonLg];
   buttonClasses.push(props.buttonClass !== "primary" ? classes.ButtonDanger : classes.ButtonPrimary);
   return (
     <button type={type}

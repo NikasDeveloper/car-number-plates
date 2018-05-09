@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchCarNumberPlate } from "../../../../store/actions";
-import Aux from '../../../../hoc/Aux';
-import DataPreloader from '../../../../components/UI/Preloader/Data/DataPreloader';
-import Form from "../../../../components/UI/Form/Form";
-import FormGroup from "../../../../components/UI/Form/FormGroup/FormGroup";
-import Input from "../../../../components/UI/Form/FormGroup/Input/Input";
-import Button from "../../../../components/UI/Form/Button/Button";
+import { fetchCarNumberPlate } from "../../../store/actions/index";
+import Aux from '../../../hoc/Aux';
+import DataPreloader from '../../../components/UI/Preloader/Data/DataPreloader';
+import Form from "../../../components/UI/Form/Form";
+import FormGroup from "../../../components/UI/Form/FormGroup/FormGroup";
+import Input from "../../../components/UI/Form/FormGroup/Input/Input";
+import Button from "../../../components/UI/Form/Button/Button";
 
-class CarNumberPlateUpdate extends Component {
+class CarNumberPlate extends Component {
   constructor( props ) {
     super(props);
     this.state = {
@@ -128,4 +128,4 @@ const mapDispatchToProps = dispatch => ({
   onFetchStart: id => dispatch(fetchCarNumberPlate(id))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(CarNumberPlateUpdate);
+export default connect(mapStateToProps, mapDispatchToProps)(CarNumberPlate);

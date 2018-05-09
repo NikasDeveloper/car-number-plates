@@ -7,7 +7,7 @@ import Nav from '../components/UI/Nav/Nav';
 import Container from '../components/UI/Container/Container';
 import CarNumberPlates from './CarNumberPlates/CarNumberPlates';
 import CarNumberPlateCreate from './CarNumberPlates/CarNumberPlate/Create/CarNumberPlateCreate';
-import CarNumberPlateUpdate from './CarNumberPlates/CarNumberPlate/Update/CarNumberPlateUpdate';
+import CarNumberPlate from './CarNumberPlates/CarNumberPlate/CarNumberPlate';
 
 class App extends Component {
   constructor( props ) {
@@ -23,7 +23,7 @@ class App extends Component {
             <Switch>
               <Route exact path="/car-number-plates" component={CarNumberPlates}/>
               <Route exact path="/car-number-plates/create" component={CarNumberPlateCreate}/>
-              <Route exact path="/car-number-plates/:id/edit" component={CarNumberPlateUpdate}/>
+              <Route exact path="/car-number-plates/:id/edit" component={CarNumberPlate}/>
               <Redirect to="/car-number-plates"/>
             </Switch>
           </Container>
