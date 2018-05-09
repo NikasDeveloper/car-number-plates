@@ -12,7 +12,7 @@ import WithErrorHandler from '../../../hoc/WithErrorHandler/WithErrorHandler';
 import Preloader from '../../../components/UI/Preloader/Preloader';
 import Button from "../../../components/UI/Form/Button/Button";
 import CarPlateNumberForm from "../../../components/CarPlateNumbers/CarPlateNumber/Form/CarPlateNumberForm";
-import { inputsFactory } from '../../../store/utility';
+import { inputsFactory, bindInputErrors, bindCarNumberPlateToInputs } from '../../../store/utility';
 
 class CarNumberPlate extends Component {
   constructor( props ) {
@@ -52,41 +52,16 @@ class CarNumberPlate extends Component {
   }
 
   static getDerivedStateFromProps( nextProps, prevState ) {
+    const bindCarNumberPlate = nextProps.carNumberPlate && !prevState.carNumberPlateFound;
+    const bindErrors = nextProps.error && nextProps.error.code === 422;
     let newState = null;
-    if ( nextProps.error && nextProps.error.code === 422 ) {
-      const errors = nextProps.error.errors;
-      const updatedState = { ...prevState };
-      const updatedInputs = { ...updatedState.inputs };
-      errors.forEach(e => {
-        const updatedInput = { ...updatedInputs[ e.key ] };
-        updatedInput.error = e.message;
-        updatedInputs[ e.key ] = updatedInput;
-      });
-      newState = { inputs: updatedInputs };
-    }
-    if ( nextProps.carNumberPlate && !prevState.carNumberPlateFound ) {
-      const updatedState = { ...prevState };
-      const updatedInputs = { ...updatedState.inputs };
-      updatedInputs.firstName = {
-        ...updatedInputs.firstName,
-        value: nextProps.carNumberPlate.owner.firstName
-      };
-      updatedInputs.lastName = {
-        ...updatedInputs.lastName,
-        value: nextProps.carNumberPlate.owner.lastName
-      };
-      updatedInputs.number = {
-        ...updatedInputs.number,
-        value: nextProps.carNumberPlate.number
-      };
-      newState = { inputs: updatedInputs, carNumberPlateFound: true };
-    }
+    if ( bindErrors ) newState = bindInputErrors(nextProps, prevState);
+    if ( bindCarNumberPlate ) newState = bindCarNumberPlateToInputs(nextProps, prevState);
     return newState;
   }
 
   componentDidMount() {
-    const id = this.props.match.params.id;
-    this.props.onFetchStart(id);
+    this.props.onFetchStart(this.props.match.params.id);
   }
 
   componentWillUnmount() {

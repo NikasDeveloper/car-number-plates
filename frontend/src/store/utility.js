@@ -33,3 +33,33 @@ export const inputsFactory = () => ({
     error: '',
   }
 });
+
+export const bindInputErrors = (nextProps, prevState) => {
+  const errors = nextProps.error.errors;
+  const updatedState = { ...prevState };
+  const updatedInputs = { ...updatedState.inputs };
+  errors.forEach(e => {
+    const updatedInput = { ...updatedInputs[ e.key ] };
+    updatedInput.error = e.message;
+    updatedInputs[ e.key ] = updatedInput;
+  });
+  return { inputs: updatedInputs };
+};
+
+export const bindCarNumberPlateToInputs = (nextProps, prevState) => {
+  const updatedState = { ...prevState };
+  const updatedInputs = { ...updatedState.inputs };
+  updatedInputs.firstName = {
+    ...updatedInputs.firstName,
+    value: nextProps.carNumberPlate.owner.firstName
+  };
+  updatedInputs.lastName = {
+    ...updatedInputs.lastName,
+    value: nextProps.carNumberPlate.owner.lastName
+  };
+  updatedInputs.number = {
+    ...updatedInputs.number,
+    value: nextProps.carNumberPlate.number
+  };
+  return { inputs: updatedInputs, carNumberPlateFound: true };
+};

@@ -6,7 +6,7 @@ import WithErrorHandler from '../../../../hoc/WithErrorHandler/WithErrorHandler'
 import Aux from '../../../../hoc/Aux';
 import CarPlateNumberForm from "../../../../components/CarPlateNumbers/CarPlateNumber/Form/CarPlateNumberForm";
 import Button from "../../../../components/UI/Form/Button/Button";
-import { inputsFactory } from '../../../../store/utility';
+import { inputsFactory, bindInputErrors } from '../../../../store/utility';
 
 class Create extends Component {
   constructor( props ) {
@@ -40,17 +40,7 @@ class Create extends Component {
 
   static getDerivedStateFromProps( nextProps, prevState ) {
     let newState = null;
-    if ( nextProps.error && nextProps.error.code === 422 ) {
-      const errors = nextProps.error.errors;
-      const updatedState = { ...prevState };
-      const updatedInputs = { ...updatedState.inputs };
-      errors.forEach(e => {
-        const updatedInput = { ...updatedInputs[ e.key ] };
-        updatedInput.error = e.message;
-        updatedInputs[ e.key ] = updatedInput;
-      });
-      newState = { inputs: updatedInputs };
-    }
+    if ( nextProps.error && nextProps.error.code === 422 ) newState = bindInputErrors(nextProps, prevState);
     return newState;
   }
 
