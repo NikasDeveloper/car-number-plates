@@ -20,6 +20,7 @@
     padding: 20px;
     font-size: 30px;
     text-decoration: none;
+    text-transform: uppercase;
     color: #003755;
     border: 2px solid #003755;
     transition: 0.5s;

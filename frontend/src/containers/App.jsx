@@ -6,7 +6,7 @@ import Aux from '../hoc/Aux';
 import Nav from '../components/UI/Nav/Nav';
 import Container from '../components/UI/Container/Container';
 import CarNumberPlates from './CarNumberPlates/CarNumberPlates';
-import CarNumberPlateCreate from './CarNumberPlates/CarNumberPlate/Create/CarNumberPlateCreate';
+import Create from './CarNumberPlates/CarNumberPlate/Create/Create';
 import CarNumberPlate from './CarNumberPlates/CarNumberPlate/CarNumberPlate';
 
 class App extends Component {
@@ -22,7 +22,7 @@ class App extends Component {
           <Container>
             <Switch>
               <Route exact path="/car-number-plates" component={CarNumberPlates}/>
-              <Route exact path="/car-number-plates/create" component={CarNumberPlateCreate}/>
+              <Route exact path="/car-number-plates/create" component={Create}/>
               <Route exact path="/car-number-plates/:id/edit" component={CarNumberPlate}/>
               <Redirect to="/car-number-plates"/>
             </Switch>

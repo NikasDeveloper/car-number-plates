@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class CarNumberPlateCreate extends Component {
+class Create extends Component {
   constructor( props ) {
     super(props);
   }
@@ -12,4 +12,4 @@ class CarNumberPlateCreate extends Component {
   }
 }
 
-export default CarNumberPlateCreate;
+export default Create;

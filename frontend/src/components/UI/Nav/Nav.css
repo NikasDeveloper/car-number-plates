@@ -1,20 +1,27 @@
 .Navigation {
-  background: #003755;
-  text-align: center;
-  font-size: 18px;
-  padding: 20px;
-  box-sizing: border-box;
+    background: #003755;
+    text-align: center;
+    font-size: 18px;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
-a {
-  color: #f5f5f5;
-  text-decoration: none;
-  text-transform: uppercase;
+.Container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.Link {
+    font-size: 25px;
+    color: #f5f5f5;
+    text-decoration: none;
+    text-transform: uppercase;
 }
 
 @media (min-width: 768px) {
-  .Navigation {
-    font-size: 30px;
-  }
+    .Navigation {
+        font-size: 30px;
+    }
 }
 
