@@ -21,3 +21,4 @@ npm install
 npm start
 ```  
 
+- Visit [localhost](http://localhost:3000/car-number-plates).
