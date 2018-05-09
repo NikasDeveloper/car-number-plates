@@ -4,9 +4,7 @@ import { connect } from 'react-redux';
 import { createInit, create } from "../../../../store/actions/index";
 import WithErrorHandler from '../../../../hoc/WithErrorHandler/WithErrorHandler';
 import Aux from '../../../../hoc/Aux';
-import Form from "../../../../components/UI/Form/Form";
-import FormGroup from "../../../../components/UI/Form/FormGroup/FormGroup";
-import Input from "../../../../components/UI/Form/FormGroup/Input/Input";
+import CarPlateNumberForm from "../../../../components/CarPlateNumbers/CarPlateNumber/Form/CarPlateNumberForm";
 import Button from "../../../../components/UI/Form/Button/Button";
 
 class Create extends Component {
@@ -16,18 +14,21 @@ class Create extends Component {
       inputs: {
         firstName: {
           value: '',
+          label: 'First name',
           placeholder: 'Owners first name...',
           required: true,
           error: '',
         },
         lastName: {
           value: '',
+          label: 'Last name',
           placeholder: 'Owners last name...',
           required: true,
           error: '',
         },
         number: {
           value: '',
+          label: 'number on car plate',
           placeholder: 'Car plate number...',
           required: true,
           error: '',
@@ -84,40 +85,15 @@ class Create extends Component {
       content = (
         <Aux>
           <h2 style={{ textTransform: 'uppercase', textAlign: 'center' }}>create new car number plate</h2>
-          <Form submitted={this.formSubmitHandler}>
-            <FormGroup label="first name" error={this.state.inputs.firstName.error}>
-              <Input name="firstName"
-                     placeholder={this.state.inputs.firstName.placeholder}
-                     value={this.state.inputs.firstName.value}
-                     required={this.state.inputs.firstName.required}
-                     error={this.state.inputs.firstName.error}
-                     changed={this.inputChangedHandler}/>
-            </FormGroup>
-            <FormGroup label="last name" error={this.state.inputs.lastName.error}>
-              <Input name="lastName"
-                     placeholder={this.state.inputs.lastName.placeholder}
-                     value={this.state.inputs.lastName.value}
-                     required={this.state.inputs.lastName.required}
-                     error={this.state.inputs.lastName.error}
-                     changed={this.inputChangedHandler}/>
-            </FormGroup>
-            <FormGroup label="number on car plate" error={this.state.inputs.number.error}>
-              <Input name="number"
-                     placeholder={this.state.inputs.number.placeholder}
-                     value={this.state.inputs.number.value}
-                     required={this.state.inputs.number.required}
-                     error={this.state.inputs.number.error}
-                     changed={this.inputChangedHandler}/>
-            </FormGroup>
+          <CarPlateNumberForm submitted={this.formSubmitHandler}
+                              inputs={this.state.inputs}
+                              inputChanged={this.inputChangedHandler}>
             <div style={{ textAlign: 'center' }}>
-              <Button buttonType="submit"
-                      buttonClass="primary"
-                      disabled={this.props.creating}
-              >
+              <Button buttonType="submit" buttonClass="primary" disabled={this.props.creating}>
                 Create
               </Button>
             </div>
-          </Form>
+          </CarPlateNumberForm>
         </Aux>
       );
     }
