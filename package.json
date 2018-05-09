@@ -7,7 +7,7 @@
     "build": "webpack",
     "start": "nodemon --watch backend backend"
   },
-  "author": "",
+  "author": "Nikolajus Lebedenko",
   "license": "ISC",
   "devDependencies": {
     "autoprefixer": "^8.4.1",
