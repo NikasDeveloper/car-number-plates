@@ -6,34 +6,13 @@ import WithErrorHandler from '../../../../hoc/WithErrorHandler/WithErrorHandler'
 import Aux from '../../../../hoc/Aux';
 import CarPlateNumberForm from "../../../../components/CarPlateNumbers/CarPlateNumber/Form/CarPlateNumberForm";
 import Button from "../../../../components/UI/Form/Button/Button";
+import { inputsFactory } from '../../../../store/utility';
 
 class Create extends Component {
   constructor( props ) {
     super(props);
     this.state = {
-      inputs: {
-        firstName: {
-          value: '',
-          label: 'First name',
-          placeholder: 'Owners first name...',
-          required: true,
-          error: '',
-        },
-        lastName: {
-          value: '',
-          label: 'Last name',
-          placeholder: 'Owners last name...',
-          required: true,
-          error: '',
-        },
-        number: {
-          value: '',
-          label: 'number on car plate',
-          placeholder: 'Car plate number...',
-          required: true,
-          error: '',
-        },
-      }
+      inputs: inputsFactory()
     };
     this.inputChangedHandler = event => {
       const value = event.target.value.toUpperCase();
