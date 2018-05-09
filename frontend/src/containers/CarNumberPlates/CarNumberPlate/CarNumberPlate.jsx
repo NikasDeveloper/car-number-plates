@@ -6,6 +6,7 @@ import {
   deleteCarNumberPlate,
   modifyCarNumberPlateInit
 } from "../../../store/actions/index";
+import WithErrorHandler from '../../../hoc/WithErrorHandler/WithErrorHandler';
 import Aux from '../../../hoc/Aux';
 import DataPreloader from '../../../components/UI/Preloader/Data/DataPreloader';
 import Form from "../../../components/UI/Form/Form";
@@ -157,4 +158,7 @@ const mapDispatchToProps = dispatch => ({
   onModifyInit: () => dispatch(modifyCarNumberPlateInit()),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(CarNumberPlate);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(WithErrorHandler(CarNumberPlate));

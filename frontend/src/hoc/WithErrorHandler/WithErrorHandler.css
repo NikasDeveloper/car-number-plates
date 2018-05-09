@@ -1,0 +1,32 @@
+.Error {
+    text-align: center;
+}
+
+.Code {
+    font-size: 130px;
+    margin-bottom: 20px;
+    color: #003755;
+}
+
+.Message {
+    font-size: 40px;
+    margin-top: 20px;
+    text-transform: uppercase;
+    color: #003755;
+}
+
+.Link {
+    display: inline-block;
+    padding: 20px;
+    font-size: 30px;
+    text-decoration: none;
+    color: #003755;
+    border: 2px solid #003755;
+    transition: 0.5s;
+}
+
+.Link:focus,
+.Link:hover {
+    background: #003755;
+    color: #fff;
+}
