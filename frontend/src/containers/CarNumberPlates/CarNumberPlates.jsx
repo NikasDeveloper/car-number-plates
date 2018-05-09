@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchCarNumberPlates, fetchCarNumberPlatesInit } from '../../store/actions/index';
+import WithErrorHandler from '../../hoc/WithErrorHandler/WithErrorHandler';
 import Aux from '../../hoc/Aux';
 import DataPreloader from '../../components/UI/Preloader/Data/DataPreloader';
 import CarPlateNumbersComponent from '../../components/CarPlateNumbers/CarPlateNumbers';
@@ -48,4 +49,7 @@ const mapDispatchToProps = dispatch => ({
   onFetchCarNumberPlatesInit: () => dispatch(fetchCarNumberPlatesInit())
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(CarNumberPlates);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(WithErrorHandler(CarNumberPlates));

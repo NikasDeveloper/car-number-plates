@@ -27,7 +27,7 @@ router.get('/', ( req, res ) => {
       });
     })
     .catch(() => {
-      res.status(500).json({ message: "Failed to load car number plates." });
+      res.status(500).json({ code: 500, message: "Failed to load car number plates." });
     });
 });
 
