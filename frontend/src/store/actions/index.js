@@ -4,6 +4,7 @@ export {
 } from './carNumberPlates';
 
 export {
-  fetchCarNumberPlateInit,
-  fetchCarNumberPlate
+  modifyCarNumberPlateInit,
+  fetchCarNumberPlate,
+  deleteCarNumberPlate
 } from './carNumberPlate';

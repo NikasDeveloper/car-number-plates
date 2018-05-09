@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchCarNumberPlates } from '../../store/actions/index';
+import { fetchCarNumberPlates, fetchCarNumberPlatesInit } from '../../store/actions/index';
 import Aux from '../../hoc/Aux';
 import DataPreloader from '../../components/UI/Preloader/Data/DataPreloader';
 import CarPlateNumbersComponent from '../../components/CarPlateNumbers/CarPlateNumbers';
@@ -17,6 +17,10 @@ class CarNumberPlates extends Component {
     if ( !this.props.carNumberPlates.length ) {
       this.props.onFetchStart();
     }
+  }
+
+  componentWillUnmount() {
+    this.props.onFetchCarNumberPlatesInit();
   }
 
   render() {
@@ -40,7 +44,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  onFetchStart: () => dispatch(fetchCarNumberPlates())
+  onFetchStart: () => dispatch(fetchCarNumberPlates()),
+  onFetchCarNumberPlatesInit: () => dispatch(fetchCarNumberPlatesInit())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CarNumberPlates);

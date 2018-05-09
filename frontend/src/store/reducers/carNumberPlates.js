@@ -8,8 +8,8 @@ import { updateObject } from '../utility';
 
 const initialState = {
   carNumberPlates: [],
-  loading: false,
-  error: null
+  error: null,
+  loading: false
 };
 
 const fetchCarNumberPlatesInit = state => updateObject(state, {

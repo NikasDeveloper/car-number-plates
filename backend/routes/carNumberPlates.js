@@ -59,7 +59,7 @@ router.post('/', ( req, res ) => {
 
 router.get('/:carNumberPlateId', ( req, res ) => {
   const id = req.params.carNumberPlateId;
-  const notFoundError = { message: 'Car number plate not found' };
+  const notFoundError = { code: 404, message: 'Car number plate not found' };
   CarNumberPlate.findById(id)
     .select('_id number owner')
     .exec()
@@ -94,9 +94,15 @@ router.delete('/:carNumberPlateId', ( req, res ) => {
     .exec()
     .then(result => result.n
       ? res.status(200).json({ message: 'Car number plate deleted', })
-      : res.status(404).json({ message: 'Car number plate not found' })
+      : res.status(404).json({
+        code: 404,
+        message: 'Car number plate not found'
+      })
     )
-    .catch(err => res.status(500).json({ error: err }));
+    .catch(() => res.status(500).json({
+      code: 500,
+      message: 'Failed to delete car number plate'
+    }));
 });
 
 module.exports = router;
