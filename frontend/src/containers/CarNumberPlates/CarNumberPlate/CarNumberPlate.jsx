@@ -11,7 +11,7 @@ import Aux from '../../../hoc/Aux';
 import WithErrorHandler from '../../../hoc/WithErrorHandler/WithErrorHandler';
 import Preloader from '../../../components/UI/Preloader/Preloader';
 import Button from "../../../components/UI/Form/Button/Button";
-import CarPlateNumberForm from "../../../components/CarPlateNumbers/CarPlateNumber/Form/CarPlateNumberForm";
+import CarNumberPlateForm from "../../../components/CarNumberPlates/CarNumberPlate/Form/CarNumberPlateForm";
 import { inputsFactory, bindInputErrors, bindCarNumberPlateToInputs } from '../../../store/utility';
 
 class CarNumberPlate extends Component {
@@ -74,7 +74,7 @@ class CarNumberPlate extends Component {
       content = (
         <Aux>
           <h2 style={{ textTransform: 'uppercase', textAlign: 'center' }}>edit car number plate</h2>
-          <CarPlateNumberForm submitted={this.formSubmitHandler}
+          <CarNumberPlateForm submitted={this.formSubmitHandler}
                               inputs={this.state.inputs}
                               inputChanged={this.inputChangedHandler}>
             <div style={{ textAlign: 'right' }}>
@@ -86,7 +86,7 @@ class CarNumberPlate extends Component {
               </Button>
               <Button buttonType="submit" buttonClass="primary" disabled={this.props.modifying}>Edit</Button>
             </div>
-          </CarPlateNumberForm>
+          </CarNumberPlateForm>
 
         </Aux>
       );

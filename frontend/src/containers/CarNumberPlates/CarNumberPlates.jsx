@@ -4,7 +4,7 @@ import { fetchCarNumberPlates, fetchCarNumberPlatesInit } from '../../store/acti
 import WithErrorHandler from '../../hoc/WithErrorHandler/WithErrorHandler';
 import Aux from '../../hoc/Aux';
 import Preloader from '../../components/UI/Preloader/Preloader';
-import CarPlateNumbersComponent from '../../components/CarPlateNumbers/CarPlateNumbers';
+import CarNumberPlatesComponent from '../../components/CarNumberPlates/CarNumberPlates';
 
 class CarNumberPlates extends Component {
   constructor( props ) {
@@ -30,7 +30,7 @@ class CarNumberPlates extends Component {
         {
           this.props.loading
             ? <Preloader/>
-            : <CarPlateNumbersComponent carNumberPlates={this.props.carNumberPlates}
+            : <CarNumberPlatesComponent carNumberPlates={this.props.carNumberPlates}
                                         clicked={this.carPlateNumbersClickHandler}/>
         }
       </Aux>

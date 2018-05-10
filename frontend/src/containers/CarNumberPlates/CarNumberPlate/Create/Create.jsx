@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { createInit, create } from "../../../../store/actions/index";
 import WithErrorHandler from '../../../../hoc/WithErrorHandler/WithErrorHandler';
 import Aux from '../../../../hoc/Aux';
-import CarPlateNumberForm from "../../../../components/CarPlateNumbers/CarPlateNumber/Form/CarPlateNumberForm";
+import CarNumberPlateForm from "../../../../components/CarNumberPlates/CarNumberPlate/Form/CarNumberPlateForm";
 import Button from "../../../../components/UI/Form/Button/Button";
 import { inputsFactory, bindInputErrors } from '../../../../store/utility';
 
@@ -54,7 +54,7 @@ class Create extends Component {
       content = (
         <Aux>
           <h2 style={{ textTransform: 'uppercase', textAlign: 'center' }}>create new car number plate</h2>
-          <CarPlateNumberForm submitted={this.formSubmitHandler}
+          <CarNumberPlateForm submitted={this.formSubmitHandler}
                               inputs={this.state.inputs}
                               inputChanged={this.inputChangedHandler}>
             <div style={{ textAlign: 'center' }}>
@@ -62,7 +62,7 @@ class Create extends Component {
                 Create
               </Button>
             </div>
-          </CarPlateNumberForm>
+          </CarNumberPlateForm>
         </Aux>
       );
     }
