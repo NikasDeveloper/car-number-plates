@@ -11,7 +11,7 @@ const mapInputs = inp => {
   return inputs;
 };
 
-const CarPlateNumberForm = props => {
+const CarNumberPlateForm = props => {
   return (
     <Form submitted={props.submitted}>
       {
@@ -31,4 +31,4 @@ const CarPlateNumberForm = props => {
   );
 };
 
-export default CarPlateNumberForm;
+export default CarNumberPlateForm;
