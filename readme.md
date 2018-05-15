@@ -22,3 +22,10 @@ npm start
 ```  
 
 - Visit [localhost](http://localhost:3000/car-number-plates).
+
+### Testing
+To run all tests simply use:
+
+```
+npm test
+```  
