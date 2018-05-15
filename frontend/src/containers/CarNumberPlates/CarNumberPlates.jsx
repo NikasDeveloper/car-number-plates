@@ -6,7 +6,7 @@ import Aux from '../../hoc/Aux';
 import Preloader from '../../components/UI/Preloader/Preloader';
 import CarNumberPlatesComponent from '../../components/CarNumberPlates/CarNumberPlates';
 
-class CarNumberPlates extends Component {
+export class CarNumberPlates extends Component {
   constructor( props ) {
     super(props);
     this.carPlateNumbersClickHandler = id => {
