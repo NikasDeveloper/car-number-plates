@@ -12,13 +12,6 @@
     align-items: center;
 }
 
-.Link {
-    font-size: 25px;
-    color: #f5f5f5;
-    text-decoration: none;
-    text-transform: uppercase;
-}
-
 @media (min-width: 768px) {
     .Navigation {
         font-size: 30px;
