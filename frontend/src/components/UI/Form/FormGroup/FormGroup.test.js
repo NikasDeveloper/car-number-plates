@@ -20,26 +20,26 @@ describe('<FormGroup />', () => {
     wrapper = shallow(<FormGroup label={label} error={error}/>);
   });
 
-  it('should render label', () => {
+  it('should render <Label/>', () => {
     expect(wrapper.find(Label)).toHaveLength(1);
   });
 
-  it('should place text into label', () => {
+  it('should place text into <Label/>', () => {
     expect(wrapper.contains(<Label>{label}</Label>)).toEqual(true);
   });
 
-  it('should render feedback if error is present', () => {
+  it('should render <Feedback/> if error is present', () => {
     wrapper.setProps({error: 'error'});
     expect(wrapper.find(Feedback)).toHaveLength(1);
   });
 
-  it('should place text into feedback', () => {
+  it('should place text into <Feedback/>', () => {
     const error = 'error';
     wrapper.setProps({error});
     expect(wrapper.contains(<Feedback>{error}</Feedback>)).toEqual(true);
   });
 
-  it('should not render feedback if error is not present', () => {
+  it('should not render <Feedback/> if error is not present', () => {
     expect(wrapper.find(Feedback)).toHaveLength(0);
   });
 

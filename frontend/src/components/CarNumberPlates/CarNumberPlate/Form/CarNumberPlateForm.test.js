@@ -36,39 +36,39 @@ describe('<CarNumberPlateForm/>', () => {
     wrapper = shallow(<CarNumberPlateForm inputs={inputs} submitted={onSubmit} inputChanged={onChange}/>);
   });
 
-  it('should render form', () => {
+  it('should render <Form/>', () => {
     expect(wrapper.find(Form)).toHaveLength(1);
   });
 
-  it('should place form props', () => {
+  it('should place <Form/> props', () => {
     const form = wrapper.find(Form);
     expect(form.prop('submitted')).toEqual(onSubmit);
   });
 
-  it('should render form groups', () => {
+  it('should render <FormGroup/>', () => {
     expect(wrapper.find(FormGroup)).toHaveLength(Object.keys(inputs).length);
   });
 
-  it('should place form group props', () => {
+  it('should place <FormGroup/> props', () => {
     const inputKeys = Object.keys(inputs);
-    wrapper.find(FormGroup).forEach((formGroup, index) => {
-      expect(formGroup.prop('label')).toEqual(inputs[inputKeys[index]].label);
-      expect(formGroup.prop('error')).toEqual(inputs[inputKeys[index]].error);
+    wrapper.find(FormGroup).forEach(( formGroup, index ) => {
+      expect(formGroup.prop('label')).toEqual(inputs[ inputKeys[ index ] ].label);
+      expect(formGroup.prop('error')).toEqual(inputs[ inputKeys[ index ] ].error);
     });
   });
 
-  it('should render inputs', () => {
+  it('should render <Input/>', () => {
     expect(wrapper.find(Input)).toHaveLength(Object.keys(inputs).length);
   });
 
-  it('should place input props', () => {
+  it('should place <Input/> props', () => {
     const inputKeys = Object.keys(inputs);
-    wrapper.find(Input).forEach((input, index) => {
-      expect(input.prop('name')).toEqual(inputKeys[index]);
-      expect(input.prop('placeholder')).toEqual(inputs[inputKeys[index]].placeholder);
-      expect(input.prop('value')).toEqual(inputs[inputKeys[index]].value);
-      expect(input.prop('required')).toEqual(inputs[inputKeys[index]].required);
-      expect(input.prop('error')).toEqual(inputs[inputKeys[index]].error);
+    wrapper.find(Input).forEach(( input, index ) => {
+      expect(input.prop('name')).toEqual(inputKeys[ index ]);
+      expect(input.prop('placeholder')).toEqual(inputs[ inputKeys[ index ] ].placeholder);
+      expect(input.prop('value')).toEqual(inputs[ inputKeys[ index ] ].value);
+      expect(input.prop('required')).toEqual(inputs[ inputKeys[ index ] ].required);
+      expect(input.prop('error')).toEqual(inputs[ inputKeys[ index ] ].error);
       expect(input.prop('changed')).toEqual(onChange);
     });
   });

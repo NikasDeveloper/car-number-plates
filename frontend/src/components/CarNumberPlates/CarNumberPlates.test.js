@@ -27,7 +27,7 @@ describe('<CarNumberPlatesComponent />', () => {
     expect(wrapper.find('h3').text()).toEqual('No car number plates found.')
   });
 
-  it('should render as much car number plate components as car number plate array length is', () => {
+  it('should render as much <CarNumberPlate/> as car number plate array length is', () => {
     expect(wrapper.find(CarNumberPlate)).toHaveLength(carNumberPlates.length);
     carNumberPlates.push({ _id: 1, number: "ABC123", owner: "John Doe", clicked: () => 1 });
     wrapper.setProps({ carNumberPlates });

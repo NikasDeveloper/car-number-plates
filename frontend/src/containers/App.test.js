@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Route, Redirect } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
 import { configure, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
@@ -21,23 +21,23 @@ describe('<App />', () => {
     wrapper = shallow(<App/>);
   });
 
-  it('should render nav', () => {
+  it('should render <Nav/>', () => {
     expect(wrapper.contains(<Nav/>)).toEqual(true);
   });
 
-  it('should render car number plates route', () => {
+  it('should render car number plates <Route/>', () => {
     expect(wrapper.exists(<Route exact path="/car-number-plates" component={CarNumberPlates}/>)).toEqual(true);
   });
 
-  it('should render car number plate preview route', () => {
+  it('should render car number plate preview <Route/>', () => {
     expect(wrapper.exists(<Route exact path="/car-number-plates/create" component={Create}/>)).toEqual(true);
   });
 
-  it('should render car number plate preview/edit/delete route', () => {
+  it('should render car number plate preview/edit/delete <Route/>', () => {
     expect(wrapper.exists(<Route exact path="/car-number-plates/:id/edit" component={CarNumberPlate}/>)).toEqual(true);
   });
 
-  it('should render redirect to car number plates route', () => {
+  it('should render <Redirect/> to car number plates <Route/>', () => {
     expect(wrapper.exists(<Redirect to="/car-number-plates"/>)).toEqual(true);
   });
 

@@ -18,19 +18,19 @@ describe('<Nav />', () => {
     wrapper = shallow(<Nav/>);
   });
 
-  it('should render container', () => {
+  it('should render <Container/>', () => {
     expect(wrapper.find(Container)).toHaveLength(1);
   });
 
-  it('should render 2 navigation links', () => {
+  it('should render 2 <NavLink/>', () => {
     expect(wrapper.find(NavLink)).toHaveLength(2);
   });
 
-  it('should render home link', () => {
+  it('should render home <NavLink/>', () => {
     expect(wrapper.contains(<NavLink to="/car-number-plates">home</NavLink>)).toEqual(true);
   });
 
-  it('should render add new link', () => {
+  it('should render add new <NavLink/>', () => {
     expect(wrapper.contains(<NavLink to="/car-number-plates/create">add new</NavLink>)).toEqual(true);
   });
 
