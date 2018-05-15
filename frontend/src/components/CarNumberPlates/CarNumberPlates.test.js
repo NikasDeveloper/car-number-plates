@@ -9,7 +9,6 @@ configure({
   adapter: new Adapter()
 });
 
-
 describe('<CarNumberPlatesComponent />', () => {
   let wrapper;
   const carNumberPlates = [];

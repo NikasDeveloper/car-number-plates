@@ -28,14 +28,21 @@ describe('<CarNumberPlateForm/>', () => {
       error: '',
     }
   };
+  const onSubmit = () => 'submit';
+  const onChange = () => 'change';
   let wrapper;
 
   beforeEach(() => {
-    wrapper = shallow(<CarNumberPlateForm inputs={inputs}/>);
+    wrapper = shallow(<CarNumberPlateForm inputs={inputs} submitted={onSubmit} inputChanged={onChange}/>);
   });
 
   it('should render form', () => {
     expect(wrapper.find(Form)).toHaveLength(1);
+  });
+
+  it('should place form props', () => {
+    const form = wrapper.find(Form);
+    expect(form.prop('submitted')).toEqual(onSubmit);
   });
 
   it('should render form groups', () => {
@@ -50,6 +57,10 @@ describe('<CarNumberPlateForm/>', () => {
     });
   });
 
+  it('should render inputs', () => {
+    expect(wrapper.find(Input)).toHaveLength(Object.keys(inputs).length);
+  });
+
   it('should place input props', () => {
     const inputKeys = Object.keys(inputs);
     wrapper.find(Input).forEach((input, index) => {
@@ -58,6 +69,7 @@ describe('<CarNumberPlateForm/>', () => {
       expect(input.prop('value')).toEqual(inputs[inputKeys[index]].value);
       expect(input.prop('required')).toEqual(inputs[inputKeys[index]].required);
       expect(input.prop('error')).toEqual(inputs[inputKeys[index]].error);
+      expect(input.prop('changed')).toEqual(onChange);
     });
   });
 
